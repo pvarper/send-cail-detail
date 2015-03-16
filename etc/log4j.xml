@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="C" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d %r,%c{1},%t] %m%n" />
+			<!-- <param name="ConversionPattern" value="[%d{ABSOLUTE} %r,%c{1},%t] -->
+			<!-- %m%n"/> -->
+
+		</layout>
+	</appender>
+
+	<appender name="F" class="org.apache.log4j.RollingFileAppender">
+		<!-- <param name="file" value="E:/logs/pdv-web.log" /> -->
+		<param name="file" value="${jboss.server.log.dir}/programming-mail.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d %r,%c{1},%t] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="personalizado_consola" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p [%C{1}:%L] [%M] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="personalizado" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="logs/send-call-detail.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p [%C{1}:%L] [%M] %m%n" />
+		</layout>
+	</appender>
+
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="personalizado_consola" />
+		<appender-ref ref="personalizado" />
+	</root>
+
+
+</log4j:configuration>
